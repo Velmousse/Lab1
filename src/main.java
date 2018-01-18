@@ -10,19 +10,26 @@ public class main {
         String entreeString = "";
         char entreeChar = ' ';
 
-        Joueur j1 = new Joueur();
-        Joueur j2 = new Joueur();
+        Joueur j1 = new Joueur(false);
+        Joueur j2 = new Joueur(false);
         Joueur jc = j1;
         Scanner sc = new Scanner(System.in);
 
-        System.out.print("Bienvenue dans le jeu des allumettes.\n");
+        System.out.print("Bienvenue dans le jeu des allumettes.\n" +
+                "1- VS IA\n" +
+                "2- VS joueur\n" +
+                "> ");
+        entree = sc.nextInt();
+        if (entree == 1) j2 = new Joueur(true);
 
         while (continuer) {
             nbAllumettes = (int)((Math.random() * 61) + 20);
             System.out.print("\nJoueur 1, veuillez entrer votre nom: ");
             j1.setNom(sc.nextLine());
-            System.out.print("Joueur 2, veuillez entrer votre nom: ");
-            j2.setNom(sc.nextLine());
+            if (!j2.getIA()) {
+                System.out.print("Joueur 2, veuillez entrer votre nom: ");
+                j2.setNom(sc.nextLine());
+            }
 
             while (nbAllumettes > 0) {
                 if (nbTours % 2 == 0) jc = j1;
@@ -31,7 +38,8 @@ public class main {
 
                 System.out.println("\nIl reste " + nbAllumettes + " allumettes.\n" +
                         jc.getNom() + ", combien d'allumettes (entre 1 et 3) voulez-vous retirer? ");
-                entree = sc.nextInt();
+                if (!jc.getIA()) entree = sc.nextInt();
+                else entree = jc.coupIA(nbAllumettes);
                 if (entree > 3) entree = 3;
                 else if (entree < 1) entree = 1;
                 jc.setActions(entree);
