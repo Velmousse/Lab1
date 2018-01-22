@@ -25,21 +25,21 @@ public class main {
         while (continuer) {
             nbAllumettes = (int)((Math.random() * 61) + 20);
             System.out.print("\nJoueur 1, veuillez entrer votre nom: ");
-            j1.setNom(sc.nextLine());
-            if (!j2.getIA()) {
+            j1.setNom(sc.next());
+            if (!j2.isIA()) {
                 System.out.print("Joueur 2, veuillez entrer votre nom: ");
                 j2.setNom(sc.nextLine());
             }
 
             while (nbAllumettes > 0) {
-                if (nbTours % 2 == 0) jc = j1;
+                if (Joueur.nbTours % 2 == 0) jc = j1;
                 else jc = j2;
-                nbTours++;
+                Joueur.nbTours++;
 
                 System.out.println("\nIl reste " + nbAllumettes + " allumettes.\n" +
                         jc.getNom() + ", combien d'allumettes (entre 1 et 3) voulez-vous retirer? ");
-                if (!jc.getIA()) entree = sc.nextInt();
-                else entree = jc.coupIA(nbAllumettes);
+                if (!jc.isIA()) entree = sc.nextInt();
+                else System.out.println(entree = jc.coupIA(nbAllumettes));
                 if (entree > 3) entree = 3;
                 else if (entree < 1) entree = 1;
                 jc.setActions(entree);
