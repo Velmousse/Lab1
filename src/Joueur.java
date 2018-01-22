@@ -21,7 +21,11 @@ public class Joueur {
         else this.actions += (", " + _action);
     }
     public String getNom() {return this.nom;}
-    public String getActions() {return this.actions;}
+    public String getActions() {
+        String actionsTemp = this.actions;
+        this.actions = "";
+        return actionsTemp;
+    }
     public boolean isIA() {return this.IA;}
 
     public int coupIA(int _nbAllumettes) {
