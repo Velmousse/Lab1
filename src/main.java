@@ -28,7 +28,7 @@ public class main {
             j1.setNom(sc.next());
             if (!j2.isIA()) {
                 System.out.print("Joueur 2, veuillez entrer votre nom: ");
-                j2.setNom(sc.nextLine());
+                j2.setNom(sc.next());
             }
 
             while (nbAllumettes > 0) {
